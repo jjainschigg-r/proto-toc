@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ChevronDown, ChevronRight, ExternalLink, Menu, Search, GitBranch, Layers, FileText } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -283,6 +283,13 @@ const pages = [
   { url: "/support", aliases: [], menu: "global", h1: "Support", description: "Support entry point for users who need help with Mirantis products, including links to support policies, lifecycle information, troubleshooting resources, and product documentation." },
 ];
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function getInternalUrl() {
+  const path = window.location.pathname;
+  return (path.startsWith(BASE) ? path.slice(BASE.length) : path) || '/';
+}
+
 function normalizeHashless(url) {
   return url.split("#")[0];
 }
@@ -445,8 +452,14 @@ function RelatedPages({ currentUrl, lookup, onNavigate }) {
 
 export default function MirantisDocsHierarchyPrototype() {
   const lookup = useMemo(() => buildLookup(pages), []);
-  const [currentUrl, setCurrentUrl] = useState("/");
+  const [currentUrl, setCurrentUrl] = useState(() => getInternalUrl());
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const handlePop = () => setCurrentUrl(getInternalUrl());
+    window.addEventListener('popstate', handlePop);
+    return () => window.removeEventListener('popstate', handlePop);
+  }, []);
 
   const page = findPage(currentUrl, lookup);
   const menu = menus[page.menu] || menus.global;
@@ -463,6 +476,7 @@ export default function MirantisDocsHierarchyPrototype() {
   }, [query]);
 
   const navigate = (url) => {
+    window.history.pushState(null, '', BASE + url);
     setCurrentUrl(url);
     setQuery("");
   };
