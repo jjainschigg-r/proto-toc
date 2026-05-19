@@ -1,0 +1,17 @@
+Category,Feature,Description
+Governance & Observability,Alerting & Notification Routing,"Pre-built and custom alert rules for infrastructure, GPU, network, and application health with configurable routing to external channels (email, Slack, PagerDuty)."
+Governance & Observability,Management Plane Monitoring,Allows providers to gather and view usage and performance metrics about k0rdent AI's management plane
+Governance & Observability,Tenant & Provider GPU Monitoring,"Collects and exposes per-GPU utilization, memory, temperature, and error metrics for all allocated GPUs with tenant-scoped and provider-wide views."
+Governance & Observability,Tenant & Provider InfiniBand or RoCE / East-West Network Monitoring,"Monitors InfiniBand fabric health including port counters, link errors, and network performance for east-west GPU networks with per-tenant scoping."
+Governance & Observability,Tenant & Provider Centralized Log Management,"Collects and indexes logs from the management plane and tenant clusters with structured search, severity filtering, and cross-cluster query."
+Governance & Observability,Tenant Cluster Monitoring,"Automatically collects node, pod, and workload metrics from tenant clusters and surfaces them via dashboards and API with tenant-scoped views."
+,,
+Governance & Observability,Observability Access Control,"Secures access to metrics, logs, and dashboards with per-user credentials, SSO integration, and tenant-scoped data isolation."
+Governance & Observability,Tenant & Provider Observability Dashboards,"Pre-built dashboards covering cluster health, Kubernetes internals, GPU, network, cost, and service mesh with provider-wide and tenant-scoped views."
+Governance & Observability,Observability Cluster Lifecycle Management,"Automatically deploys, upgrades, and configures monitoring and logging agents on tenant and regional clusters as part of cluster lifecycle operations."
+Governance & Observability,Observability Data Retention Management,"Configurable retention periods and storage allocation for metrics, logs, and traces with automatic expiration enforcement."
+,,
+Address Metering...,,
+FinOps,Tenant & Provider Cluster Cost Analysis,"Calculates and visualizes per-cluster, per-namespace, and per-workload resource costs with cloud provider pricing integration."
+FinOps,Drill Down: Compute Cost Dashboards,"Pre-built dashboards showing cost allocation, spend trends, and resource pricing breakdowns across pods, namespaces, and clusters."
+FinOps,Drill Down: Storage Cost Dashbaords,Tracks and attributes persistent volume storage costs by tenant and namespace with cumulative spend reporting.
